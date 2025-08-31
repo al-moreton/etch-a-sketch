@@ -76,7 +76,7 @@ function buildGrid(size) {
         gridElement.style.width = `${squareWidth}px`;
         gridElement.addEventListener('mouseover', changeColour);
         gridElement.addEventListener('click', changeColour);
-        gridElement.addEventListener('touchend', changeColour);
+        gridElement.addEventListener('touchmove', changeColour);
         grid.appendChild(gridElement);
     }
 }
