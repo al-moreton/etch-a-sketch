@@ -7,6 +7,7 @@ const colourModeButton = document.getElementById('colour-mode');
 const eraserModeButton = document.getElementById('eraser-mode');
 const rainbowModeButton = document.getElementById('rainbow-mode');
 const selectColour = document.getElementById('colour-select');
+const coordinates = document.querySelector('.coordinates');
 
 let gridSize = grid.offsetWidth;
 let size = 16;
@@ -75,24 +76,16 @@ function buildGrid(size) {
         gridElement.classList.add('grid-element');
         gridElement.style.width = `${squareWidth}px`;
         gridElement.addEventListener('mouseover', changeColour);
-        // gridElement.addEventListener('touchend', changeColour);
-        // gridElement.addEventListener('touchstart', changeColour);
-        // gridElement.addEventListener('touchmove', changeColour);
+        gridElement.addEventListener('touchmove', setCoordinates);
         grid.appendChild(gridElement);
     }
 }
 
-gridElements.forEach(overlay => {
-    overlay.addEventListener('touchstart', e => {
-        e.preventDefault();
-        overlay.textContent = 'h';
-    });
-
-    overlay.addEventListener('touchend', e => {
-        e.preventDefault();
-        overlay.textContent = 'g';
-    });
-});
+function setCoordinates(e) {
+    const newCoord = document.createElement('li');
+    newCoord.textContent = e.touches[0].clientX + ' ' + e.touches[0].clientY;
+    coordinates.appendChild(newCoord);
+}
 
 function changeColour(e) {
     if (currentMode === 'colour') {
