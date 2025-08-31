@@ -33,9 +33,8 @@ function buildGrid(size) {
         gridElement.classList.add('grid-element');
         gridElement.style.width = `${squareWidth}px`;
         gridElement.addEventListener('mouseover', changeColour);
-        // gridElement.addEventListener('mouseover', setCoordinates);
-        gridElement.addEventListener('touchstart', setCoordinates);
-        gridElement.addEventListener('touchmove', setCoordinates);
+        gridElement.addEventListener('touchstart', mobileChangeColour);
+        gridElement.addEventListener('touchmove', mobileChangeColour);
         grid.appendChild(gridElement);
     }
 }
@@ -83,7 +82,7 @@ function changeGridSize() {
     buildGrid(size);
 }
 
-function setCoordinates(e) {
+function mobileChangeColour(e) {
     for (i = 0; i < gridElements.length; i++) {
         const rect = gridElements[i].getBoundingClientRect();
         const touchX = e.touches[0].clientX;
@@ -92,13 +91,21 @@ function setCoordinates(e) {
             touchX <= rect.right &&
             touchY >= rect.top &&
             touchY <= rect.bottom) {
-            gridElements[i].style.backgroundColor = currentColour;
+            if (currentMode === 'colour') {
+                gridElements[i].style.backgroundColor = currentColour;
+            } else if (currentMode === 'rainbow') {
+                const randomR = Math.floor(Math.random() * 256)
+                const randomG = Math.floor(Math.random() * 256)
+                const randomB = Math.floor(Math.random() * 256)
+                gridElements[i].style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, 0.8)`
+            } else if (currentMode === 'eraser') {
+                gridElements[i].style.backgroundColor = '#ffffff';
+            }
         }
     }
-
-    const newCoord = document.createElement('li');
-    newCoord.textContent = e.touches[0].clientX + ' ' + e.touches[0].clientY;
-    coordinates.appendChild(newCoord);
+    // const newCoord = document.createElement('li');
+    // newCoord.textContent = e.touches[0].clientX + ' ' + e.touches[0].clientY;
+    // coordinates.appendChild(newCoord);
 }
 
 function changeColour(e) {
