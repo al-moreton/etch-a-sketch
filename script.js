@@ -1,4 +1,5 @@
 const grid = document.querySelector('.grid');
+let gridElements = document.getElementsByClassName('grid-element');
 const sizeSlider = document.getElementById('size-slider');
 const sizeLabel = document.getElementById('size-label');
 const clearButton = document.getElementById('clear-button');
@@ -24,6 +25,20 @@ selectColour.addEventListener('change', updateColour);
 selectColour.addEventListener('change', updateMode);
 selectColour.addEventListener('mouseover', hoverColour);
 colourModeButton.addEventListener('mouseover', hoverColour);
+
+function buildGrid(size) {
+    const totalSquares = size * size;
+    for (let i = 1; i <= totalSquares; i++) {
+        const gridElement = document.createElement('div');
+        gridElement.classList.add('grid-element');
+        gridElement.style.width = `${squareWidth}px`;
+        gridElement.addEventListener('mouseover', changeColour);
+        // gridElement.addEventListener('mouseover', setCoordinates);
+        gridElement.addEventListener('touchstart', setCoordinates);
+        gridElement.addEventListener('touchmove', setCoordinates);
+        grid.appendChild(gridElement);
+    }
+}
 
 function hoverColour() {
     selectColour.addEventListener('mouseout', removeColour);
@@ -68,22 +83,7 @@ function changeGridSize() {
     buildGrid(size);
 }
 
-function buildGrid(size) {
-    const totalSquares = size * size;
-    for (let i = 1; i <= totalSquares; i++) {
-        const gridElement = document.createElement('div');
-        gridElement.classList.add('grid-element');
-        gridElement.style.width = `${squareWidth}px`;
-        gridElement.addEventListener('mouseover', changeColour);
-        // gridElement.addEventListener('mouseover', setCoordinates);
-        gridElement.addEventListener('touchstart', setCoordinates);
-        gridElement.addEventListener('touchmove', setCoordinates);
-        grid.appendChild(gridElement);
-    }
-}
-
 function setCoordinates(e) {
-    const gridElements = document.querySelectorAll('.grid-element');
     for (i = 0; i < gridElements.length; i++) {
         const rect = gridElements[i].getBoundingClientRect();
         const touchX = e.touches[0].clientX;
