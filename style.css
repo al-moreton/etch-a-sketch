@@ -1,6 +1,10 @@
+html {
+    overscroll-behavior: none !important;
+}
+
 body {
     background-color: #ededed;
-    overscroll-behavior: contain;
+    overscroll-behavior: none !important;
 }
 
 main {
