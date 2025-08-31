@@ -63,7 +63,7 @@ function updateMode(e) {
 function changeGridSize() {
     size = sizeSlider.value;
     squareWidth = gridSize / size;
-    sizeLabel.textContent =  `${size} x ${size}`;
+    sizeLabel.textContent = `${size} x ${size}`;
     resetGrid();
     buildGrid(size);
 }
@@ -75,12 +75,24 @@ function buildGrid(size) {
         gridElement.classList.add('grid-element');
         gridElement.style.width = `${squareWidth}px`;
         gridElement.addEventListener('mouseover', changeColour);
-        gridElement.addEventListener('touchend', changeColour);
-        gridElement.addEventListener('touchstart', changeColour);
-        gridElement.addEventListener('touchmove', changeColour);
+        // gridElement.addEventListener('touchend', changeColour);
+        // gridElement.addEventListener('touchstart', changeColour);
+        // gridElement.addEventListener('touchmove', changeColour);
         grid.appendChild(gridElement);
     }
 }
+
+gridElements.forEach(overlay => {
+    overlay.addEventListener('touchstart', e => {
+        e.preventDefault();
+        overlay.textContent = 'h';
+    });
+
+    overlay.addEventListener('touchend', e => {
+        e.preventDefault();
+        overlay.textContent = 'g';
+    });
+});
 
 function changeColour(e) {
     if (currentMode === 'colour') {
