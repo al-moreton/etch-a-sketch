@@ -92,7 +92,7 @@ function setCoordinates(e) {
             touchX <= rect.right &&
             touchY >= rect.top &&
             touchY <= rect.bottom) {
-            gridElement[i].style.backgroundColor = currentColour;
+            gridElements[i].style.backgroundColor = currentColour;
         }
     }
 
