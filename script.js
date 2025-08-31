@@ -84,9 +84,20 @@ function buildGrid(size) {
 }
 
 function setCoordinates(e) {
+    for (i = 0; i < gridElements.length; i++) {
+        const rect = gridElements[i].getBoundingClientRect();
+        const touchX = e.touches[0].clientX;
+        const touchY = e.touches[0].clientY;
+        if (touchX >= rect.left &&
+            touchX <= rect.right &&
+            touchY >= rect.top &&
+            touchY <= rect.bottom) {
+            gridElement[i].style.backgroundColor = currentColour;
+        }
+    }
+
     const newCoord = document.createElement('li');
     newCoord.textContent = e.touches[0].clientX + ' ' + e.touches[0].clientY;
-    // newCoord.textContent = 'hello';
     coordinates.appendChild(newCoord);
 }
 
