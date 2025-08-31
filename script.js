@@ -1,5 +1,4 @@
 const grid = document.querySelector('.grid');
-const gridElements = document.querySelectorAll('.grid-element');
 const sizeSlider = document.getElementById('size-slider');
 const sizeLabel = document.getElementById('size-label');
 const clearButton = document.getElementById('clear-button');
@@ -84,6 +83,7 @@ function buildGrid(size) {
 }
 
 function setCoordinates(e) {
+    const gridElements = document.querySelectorAll('.grid-element');
     for (i = 0; i < gridElements.length; i++) {
         const rect = gridElements[i].getBoundingClientRect();
         const touchX = e.touches[0].clientX;
