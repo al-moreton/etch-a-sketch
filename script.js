@@ -85,8 +85,8 @@ function buildGrid(size) {
 
 function setCoordinates(e) {
     const newCoord = document.createElement('li');
-    // newCoord.textContent = e.touches[0].clientX + ' ' + e.touches[0].clientY;
-    newCoord.textContent = 'hello';
+    newCoord.textContent = e.touches[0].clientX + ' ' + e.touches[0].clientY;
+    // newCoord.textContent = 'hello';
     coordinates.appendChild(newCoord);
 }
 
