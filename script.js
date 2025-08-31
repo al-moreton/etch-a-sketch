@@ -83,18 +83,19 @@ function changeGridSize() {
 }
 
 function changeColour(e) {
-    if (currentMode === 'colour') {
-        e.target.style.backgroundColor = currentColour;
-    } else if (currentMode === 'rainbow') {
-        const randomR = Math.floor(Math.random() * 256)
-        const randomG = Math.floor(Math.random() * 256)
-        const randomB = Math.floor(Math.random() * 256)
-        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, 0.8)`
-    } else if (currentMode === 'eraser') {
-        e.target.style.backgroundColor = '#ffffff';
-    }
+    const randomR = Math.floor(Math.random() * 256);
+    const randomG = Math.floor(Math.random() * 256);
+    const randomB = Math.floor(Math.random() * 256);
 
-    if (e.type !== 'mouseover') {
+    if (e.type === 'mouseover') {
+        if (currentMode === 'colour') {
+            e.target.style.backgroundColor = currentColour;
+        } else if (currentMode === 'rainbow') {
+            e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, 0.8)`;
+        } else if (currentMode === 'eraser') {
+            e.target.style.backgroundColor = '#ffffff';
+        }
+    } else if (e.type !== 'mouseover') {
         for (i = 0; i < gridElements.length; i++) {
             const rect = gridElements[i].getBoundingClientRect();
             const touchX = e.touches[0].clientX;
@@ -106,10 +107,7 @@ function changeColour(e) {
                 if (currentMode === 'colour') {
                     gridElements[i].style.backgroundColor = currentColour;
                 } else if (currentMode === 'rainbow') {
-                    const randomR = Math.floor(Math.random() * 256)
-                    const randomG = Math.floor(Math.random() * 256)
-                    const randomB = Math.floor(Math.random() * 256)
-                    gridElements[i].style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, 0.8)`
+                    gridElements[i].style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB}, 0.8)`;
                 } else if (currentMode === 'eraser') {
                     gridElements[i].style.backgroundColor = '#ffffff';
                 }
@@ -133,6 +131,5 @@ document.addEventListener('DOMContentLoaded', function () {
     buildGrid(size);
 });
 
-// How to get it working on mobile, which event to fire?
 // change settings flex settings to display horizontally on mobile
 // grid loses square aspect when screen size changes
