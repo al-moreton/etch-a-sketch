@@ -23,6 +23,7 @@ Added an HTML colour picker to choose the default colour.
 
 ## Things I would like to add
 - A better way to change the colour of the squares - at the moment I've written an if statement to split out if an event was `mouseover` or a touch event - but they are effectively doing the same thing - it seems innefficient
+- Grid squares lose aspect ratio when screen size changes - would be nice to not have to reload after changing screen size
 
 
 
