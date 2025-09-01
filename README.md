@@ -1,6 +1,8 @@
 # Etch-a-sketch
 Part of The Odin Project JS foundations course. Built as per task requirements, with additional functionality.
 
+[Live version]. (https://al-moreton.github.io/etch-a-sketch/)
+
 ## How it's made
 **Tech used:** HTML, CSS, JavaScript
 
